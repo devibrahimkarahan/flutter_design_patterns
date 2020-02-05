@@ -1,5 +1,5 @@
-class GenericCareTaker<T> {
-  T state;
+import 'generic_memento.dart';
 
-  GenericCareTaker(this.state);
+class GenericCareTaker<T> {
+  GenericMemento<T> memento;
 }
