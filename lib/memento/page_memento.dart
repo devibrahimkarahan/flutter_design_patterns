@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design_patterns/memento/coklu_state_kaydetme.dart';
+import 'package:flutter_design_patterns/memento/ileri_ozellikli_kaydetme.dart';
 import 'package:flutter_design_patterns/memento/tek_state_kaydetme.dart';
 
 class PageMemento extends StatefulWidget {
@@ -34,6 +35,14 @@ class _PageMementoState extends State<PageMemento> {
                 ));
               },
               child: Text("Çoklu state kaydetme"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => IleriOzellikliKaydetme(),
+                ));
+              },
+              child: Text("İleri özellikli kaydetme"),
             ),
           ],
         ),
