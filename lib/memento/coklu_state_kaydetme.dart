@@ -4,12 +4,12 @@ import 'package:flutter_design_patterns/memento/memento_extension.dart';
 import 'generic_care_taker.dart';
 import 'post.dart';
 
-class TekStateKaydetme extends StatefulWidget {
+class CoklyStateKaydetme extends StatefulWidget {
   @override
-  _TekStateKaydetmeState createState() => _TekStateKaydetmeState();
+  _CoklyStateKaydetmeState createState() => _CoklyStateKaydetmeState();
 }
 
-class _TekStateKaydetmeState extends State<TekStateKaydetme> {
+class _CoklyStateKaydetmeState extends State<CoklyStateKaydetme> {
   final GenericCareTaker<Post> postManager = GenericCareTaker<Post>();
   final Post post = Post("", "");
   final TextEditingController controllerAuthor = TextEditingController();
@@ -28,11 +28,12 @@ class _TekStateKaydetmeState extends State<TekStateKaydetme> {
   }
 
   void save() {
-    postManager.memento = post.save();
+    postManager.listMemento.add(post.save());
   }
 
   void restore() {
-    post.restore(postManager.memento);
+    if (postManager.listMemento.isEmpty) return;
+    post.restore(postManager.listMemento.removeLast());
     controllerAuthor.setTextAndSelection(post.author);
     controllerBody.setTextAndSelection(post.body);
     setState(() {});
@@ -42,7 +43,7 @@ class _TekStateKaydetmeState extends State<TekStateKaydetme> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tek state kaydetme"),
+        title: Text("Çoklu state kaydetme"),
         centerTitle: true,
       ),
       body: Center(

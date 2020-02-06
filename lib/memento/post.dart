@@ -1,4 +1,4 @@
-import 'generic_memento.dart';
+import 'package:flutter_design_patterns/memento/generic_memento.dart';
 
 class Post {
   String author;

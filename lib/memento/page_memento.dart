@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_design_patterns/memento/tek_state_kaydetme/tek_state_kaydetme.dart';
+import 'package:flutter_design_patterns/memento/coklu_state_kaydetme.dart';
+import 'package:flutter_design_patterns/memento/tek_state_kaydetme.dart';
 
 class PageMemento extends StatefulWidget {
   @override
@@ -25,6 +26,14 @@ class _PageMementoState extends State<PageMemento> {
                 ));
               },
               child: Text("Tek state kaydetme"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => CoklyStateKaydetme(),
+                ));
+              },
+              child: Text("Çoklu state kaydetme"),
             ),
           ],
         ),
