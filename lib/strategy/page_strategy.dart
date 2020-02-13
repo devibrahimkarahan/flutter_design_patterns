@@ -8,31 +8,31 @@ abstract class IEncrypter {
   String decrypt(String value);
 }
 
-class MD5Encrypter extends IEncrypter {
-  const MD5Encrypter();
+class AESEncrypter extends IEncrypter {
+  const AESEncrypter();
 
   @override
   String encrypt(String value) {
-    return "MD5 $value";
+    return "AES $value";
   }
 
   @override
   String decrypt(String value) {
-    return value.replaceFirst("MD5 ", "");
+    return value.replaceFirst("AES ", "");
   }
 }
 
-class XYZEncrypter extends IEncrypter {
-  const XYZEncrypter();
+class RSAEncrypter extends IEncrypter {
+  const RSAEncrypter();
 
   @override
   String encrypt(String value) {
-    return "XYZ $value";
+    return "RSA $value";
   }
 
   @override
   String decrypt(String value) {
-    return value.replaceFirst("XYZ ", "");
+    return value.replaceFirst("RSA ", "");
   }
 }
 
@@ -56,29 +56,29 @@ class PageStrategy extends StatefulWidget {
 }
 
 class _PageStrategyState extends State<PageStrategy> {
-  final md5Controller = TextEditingController();
-  final xyzController = TextEditingController();
-  final md5Encrypter = const MD5Encrypter();
-  final xyzEncrypter = const XYZEncrypter();
+  final aesController = TextEditingController();
+  final rsaController = TextEditingController();
+  final aesEncrypter = const AESEncrypter();
+  final rsaEncrypter = const RSAEncrypter();
 
   void encrypt() {
     setState(() {
-      md5Controller.text = Encrypter(md5Encrypter).encrypt(
-        md5Controller.text,
+      aesController.text = Encrypter(aesEncrypter).encrypt(
+        aesController.text,
       );
-      xyzController.text = Encrypter(xyzEncrypter).encrypt(
-        xyzController.text,
+      rsaController.text = Encrypter(rsaEncrypter).encrypt(
+        rsaController.text,
       );
     });
   }
 
   void decrypt() {
     setState(() {
-      md5Controller.text = Encrypter(md5Encrypter).decrypt(
-        md5Controller.text,
+      aesController.text = Encrypter(aesEncrypter).decrypt(
+        aesController.text,
       );
-      xyzController.text = Encrypter(xyzEncrypter).decrypt(
-        xyzController.text,
+      rsaController.text = Encrypter(rsaEncrypter).decrypt(
+        rsaController.text,
       );
     });
   }
@@ -98,15 +98,15 @@ class _PageStrategyState extends State<PageStrategy> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: TextFormField(
-                controller: md5Controller,
-                decoration: InputDecoration(hintText: "MD5"),
+                controller: aesController,
+                decoration: InputDecoration(hintText: "AES"),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: TextFormField(
-                controller: xyzController,
-                decoration: InputDecoration(hintText: "XYZ"),
+                controller: rsaController,
+                decoration: InputDecoration(hintText: "RSA"),
               ),
             ),
             const SizedBox(height: 12),
